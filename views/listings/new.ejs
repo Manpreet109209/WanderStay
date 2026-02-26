@@ -1,0 +1,40 @@
+<% layout("/layouts/boilerplate") -%>
+<link rel="stylesheet" href="/css/new.css">
+
+<div class="new-listing-page">
+
+    <div class="form-wrapper">
+        <h2 class="form-title">🏡 Add Your Own Property</h2>
+
+        <form method="post" action="/listings" class="listing-form">
+
+            <div class="form-group">
+                <input name="listing[title]" placeholder="Enter the title" type="text" required>
+            </div>
+
+            <div class="form-group">
+                <textarea name="listing[description]" placeholder="Enter the description" rows="4" required></textarea>
+            </div>
+
+            <div class="form-group">
+                <input name="listing[image][url]" placeholder="Enter the image URL" type="text" required>
+            </div>
+
+            <div class="form-group">
+                <input name="listing[price]" placeholder="Enter the price" type="number" required>
+            </div>
+
+            <div class="form-group">
+                <input name="listing[country]" placeholder="Enter the country" type="text" required>
+            </div>
+
+            <div class="form-group">
+                <input name="listing[location]" placeholder="Enter the location" type="text" required>
+            </div>
+
+            <button type="submit" class="submit-btn">✨ Create Listing</button>
+
+        </form>
+    </div>
+
+</div>

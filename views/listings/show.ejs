@@ -1,0 +1,43 @@
+<% layout("/layouts/boilerplate") -%>
+<link rel="stylesheet" href="/css/show.css">
+<div class="listing-wrapper">
+    <div class="listing-card">
+
+        <h2 class="listing-title"><%= listing.title %></h2>
+
+        <p class="listing-description">
+            <%= listing.description %>
+        </p>
+
+        <div class="listing-meta">
+            <div class="meta-item price">
+                ₹ <%= listing.price.toLocaleString("en-IN") %>
+            </div>
+
+            <div class="meta-item">
+                📍 <%= listing.location %>, <%= listing.country %>
+            </div>
+        </div>
+
+        <div class="listing-actions">
+            <a href="/listings/<%= listing._id %>/edit" class="btn edit-btn">
+                Edit
+            </a>
+
+            <form method="post" action="/listings/<%= listing._id %>?_method=DELETE">
+                <button class="btn delete-btn">
+                    Delete
+                </button>
+            </form>
+        </div>
+
+    </div>
+    <div class="listing-image-wrapper">
+     <img 
+    src="<%= listing.image?.url %>" 
+    alt="<%= listing.title %> image"
+    class="listing-image"
+    loading="lazy"
+    >
+    </div>
+</div>

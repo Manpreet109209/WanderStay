@@ -1,0 +1,172 @@
+/* PAGE WRAPPER */
+
+.new-listing-page {
+    padding: 80px 20px;
+    display: flex;
+    justify-content: center;
+    background: linear-gradient(135deg, #f8fafc 0%, #eef2ff 100%);
+    min-height: 100vh;
+}
+
+/* FORM CARD */
+
+.new-listing-page .form-wrapper {
+    width: 100%;
+    max-width: 680px;
+    background: #ffffff;
+    padding: 56px;
+    border-radius: 24px;
+    box-shadow:
+        0 10px 30px rgba(0, 0, 0, 0.05),
+        0 20px 60px rgba(99, 102, 241, 0.08);
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Subtle hover lift */
+.new-listing-page .form-wrapper:hover {
+    transform: translateY(-4px);
+    box-shadow:
+        0 20px 40px rgba(0, 0, 0, 0.08),
+        0 25px 80px rgba(99, 102, 241, 0.12);
+}
+
+/* Decorative top accent line */
+.new-listing-page .form-wrapper::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(to right, #6366f1, #8b5cf6);
+}
+
+/* TITLE */
+
+.new-listing-page .form-title {
+    margin-bottom: 36px;
+    font-size: 2rem;
+    font-weight: 600;
+    text-align: center;
+    color: #111827;
+    letter-spacing: -0.5px;
+}
+
+/* FORM STRUCTURE */
+
+.new-listing-page .listing-form {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+/* Floating interaction container */
+.new-listing-page .form-group {
+    position: relative;
+}
+
+/* Inputs */
+
+.new-listing-page .form-group input,
+.new-listing-page .form-group textarea {
+    width: 100%;
+    padding: 16px 18px;
+    border-radius: 14px;
+    border: 1px solid #e5e7eb;
+    background: #f9fafb;
+    font-size: 0.95rem;
+    color: #111827;
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease,
+        background 0.2s ease,
+        transform 0.15s ease;
+    outline: none;
+}
+
+/* Subtle press interaction */
+.new-listing-page .form-group input:active,
+.new-listing-page .form-group textarea:active {
+    transform: scale(0.995);
+}
+
+/* Focus glow */
+
+.new-listing-page .form-group input:focus,
+.new-listing-page .form-group textarea:focus {
+    background: #ffffff;
+    border-color: #6366f1;
+    box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.15);
+}
+
+/* Hover state */
+
+.new-listing-page .form-group input:hover,
+.new-listing-page .form-group textarea:hover {
+    border-color: #c7d2fe;
+}
+
+/* Textarea */
+
+.new-listing-page .form-group textarea {
+    resize: vertical;
+    min-height: 140px;
+}
+
+/* BUTTON */
+
+.new-listing-page .submit-btn {
+    margin-top: 10px;
+    padding: 16px;
+    border: none;
+    border-radius: 999px;
+    background: linear-gradient(to right, #6366f1, #8b5cf6);
+    color: #ffffff;
+    font-size: 1rem;
+    font-weight: 600;
+    letter-spacing: 0.4px;
+    cursor: pointer;
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        opacity 0.2s ease;
+    box-shadow: 0 10px 25px rgba(99, 102, 241, 0.25);
+}
+
+/* Hover lift */
+.new-listing-page .submit-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 15px 35px rgba(99, 102, 241, 0.35);
+}
+
+/* Click feedback */
+.new-listing-page .submit-btn:active {
+    transform: translateY(0);
+    box-shadow: 0 5px 15px rgba(99, 102, 241, 0.25);
+}
+
+/* Disabled future-proofing */
+.new-listing-page .submit-btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    box-shadow: none;
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 768px) {
+    .new-listing-page {
+        padding: 60px 16px;
+    }
+
+    .new-listing-page .form-wrapper {
+        padding: 36px;
+        border-radius: 20px;
+    }
+
+    .new-listing-page .form-title {
+        font-size: 1.6rem;
+    }
+}

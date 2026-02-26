@@ -1,0 +1,183 @@
+:root {
+    --gradient-1: #ee58ff;
+    --gradient-2: #369afd;
+    --gradient-3: #ee58ff;
+
+    --accent: #60a5fa;
+    --accent-hover: #3b82f6;
+
+    --text-primary: #ffffff;
+    --text-secondary: rgba(255, 255, 255, 0.85);
+
+    --radius: 999px;
+    --transition: 0.35s ease;
+}
+
+/* 🌌 Animated Background */
+
+.home-hero {
+    min-height: 100vh;
+    background: linear-gradient(-45deg, var(--gradient-1), var(--gradient-2), var(--gradient-3));
+    background-size: 400% 400%;
+    animation: gradientShift 12s ease infinite;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 40px 20px;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Floating Cute Blobs */
+
+.home-hero::before,
+.home-hero::after {
+    content: "";
+    position: absolute;
+    width: 300px;
+    height: 300px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 50%;
+    filter: blur(60px);
+    animation: float 8s ease-in-out infinite;
+}
+
+.home-hero::before {
+    top: -80px;
+    left: -80px;
+}
+
+.home-hero::after {
+    bottom: -100px;
+    right: -100px;
+    animation-delay: 4s;
+}
+
+/* Content */
+
+.hero-content {
+    max-width: 800px;
+    animation: fadeInUp 1s ease forwards;
+    position: relative;
+    z-index: 2;
+}
+
+.hero-title {
+    font-size: clamp(2.8rem, 5vw, 3.8rem);
+    color: var(--text-primary);
+    margin-bottom: 20px;
+    letter-spacing: 1px;
+}
+
+.hero-subtitle {
+    font-size: 1.1rem;
+    color: var(--text-secondary);
+    line-height: 1.8;
+    margin-bottom: 50px;
+}
+
+/* Buttons */
+
+.hero-actions {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.hero-btn {
+    text-decoration: none;
+    padding: 14px 32px;
+    border-radius: var(--radius);
+    font-weight: 600;
+    position: relative;
+    overflow: hidden;
+
+    transition: transform var(--transition),
+                box-shadow var(--transition),
+                background var(--transition);
+}
+
+/* Primary Button */
+
+.primary-btn {
+    background: var(--accent);
+    color: white;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+}
+
+.primary-btn:hover {
+    background: var(--accent-hover);
+    transform: translateY(-6px) scale(1.05);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+}
+
+/* Secondary Button */
+
+.secondary-btn {
+    background: rgba(255, 255, 255, 0.12);
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+}
+
+.secondary-btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateY(-6px) scale(1.05);
+}
+
+/* Sparkle Hover Effect */
+
+.hero-btn::after {
+    content: "";
+    position: absolute;
+    width: 120%;
+    height: 120%;
+    background: radial-gradient(circle, rgba(255,255,255,0.3) 0%, transparent 70%);
+    top: -10%;
+    left: -10%;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+.hero-btn:hover::after {
+    opacity: 1;
+}
+
+/* Animations */
+
+@keyframes gradientShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(25px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-25px); }
+    100% { transform: translateY(0px); }
+}
+
+/* Responsive */
+
+@media (max-width: 768px) {
+    .hero-actions {
+        flex-direction: column;
+    }
+
+    .hero-btn {
+        width: 100%;
+    }
+}

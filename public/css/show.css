@@ -1,0 +1,212 @@
+/* ===============================
+   DESIGN TOKENS
+================================ */
+
+:root {
+    --radius-pill: 999px;
+
+    --shadow-elevated: 0 25px 60px rgba(0, 0, 0, 0.35);
+    --shadow-soft: 0 10px 30px rgba(0, 0, 0, 0.25);
+
+    --danger: #d64545;
+    --danger-dark: #b73232;
+
+    --transition: 0.3s ease;
+}
+
+/* ===============================
+   FULLSCREEN WRAPPER
+================================ */
+
+.listing-wrapper {
+    position: relative;
+    min-height: 100vh;
+    width: 100%;
+    overflow: hidden;
+}
+
+/* ===============================
+   FULLSCREEN IMAGE
+================================ */
+
+.listing-image-wrapper {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.listing-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+}
+
+/* Dark overlay for readability */
+
+.listing-image-wrapper::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        to top,
+        rgba(0, 0, 0, 0.75) 0%,
+        rgba(0, 0, 0, 0.45) 40%,
+        rgba(0, 0, 0, 0.2) 70%,
+        rgba(0, 0, 0, 0.1) 100%
+    );
+}
+
+/* ===============================
+   CONTENT OVERLAY
+================================ */
+
+.listing-card {
+    position: relative;
+    z-index: 2;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: clamp(30px, 6vw, 80px);
+    color: #ffffff;
+}
+
+/* ===============================
+   TYPOGRAPHY
+================================ */
+
+.listing-title {
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 600;
+    margin-bottom: 16px;
+    line-height: 1.1;
+    text-shadow: var(--shadow-soft);
+}
+
+.listing-description {
+    max-width: 700px;
+    font-size: 1rem;
+    line-height: 1.7;
+    margin-bottom: 28px;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.listing-meta {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-bottom: 40px;
+}
+
+.meta-item {
+    font-size: 0.95rem;
+    opacity: 0.9;
+}
+
+.price {
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+/* ===============================
+   ACTION BUTTONS
+================================ */
+
+/* Desktop: bottom-right floating */
+
+.listing-actions {
+    position: absolute;
+    bottom: clamp(30px, 6vw, 60px);
+    right: clamp(30px, 6vw, 80px);
+    display: flex;
+    gap: 16px;
+    z-index: 3;
+}
+
+/* Base Button */
+
+.btn {
+    appearance: none;
+    border: none;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 0.9rem;
+    font-weight: 500;
+    padding: 12px 26px;
+    border-radius: var(--radius-pill);
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(6px);
+
+    transition: transform var(--transition),
+                box-shadow var(--transition),
+                background var(--transition);
+}
+
+/* Edit */
+
+.edit-btn {
+    background: rgba(255, 255, 255, 0.9);
+    color: #111;
+    box-shadow: var(--shadow-soft);
+}
+
+.edit-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-elevated);
+}
+
+/* Delete */
+
+.delete-btn {
+    background: rgba(214, 69, 69, 0.9);
+    color: #fff;
+    box-shadow: var(--shadow-soft);
+}
+
+.delete-btn:hover {
+    background: var(--danger);
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-elevated);
+}
+
+/* ===============================
+   RESPONSIVE
+================================ */
+
+@media (max-width: 768px) {
+
+    .listing-card {
+        justify-content: flex-end;
+        padding: 30px 20px 120px;
+    }
+
+    /* Move buttons to bottom stacked */
+    .listing-actions {
+        position: fixed;
+        bottom: 20px;
+        left: 20px;
+        right: 20px;
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .btn {
+        width: 100%;
+    }
+}
+
+/* ===============================
+   REDUCED MOTION
+================================ */
+
+@media (prefers-reduced-motion: reduce) {
+    * {
+        transition: none !important;
+    }
+}

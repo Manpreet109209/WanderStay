@@ -7,7 +7,7 @@ const methodOverride = require("method-override");
 const ejsMate = require("ejs-mate");
 require("dotenv").config();
 
-const port = 8080;
+const port = process.env.PORT || 8080;
 const MONGO_URL = process.env.ATLASDB_URL;
 
 main().then(() => {

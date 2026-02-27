@@ -1,6 +1,9 @@
 /* ===============================
    PAGE WRAPPER
 ================================ */
+* {
+  -webkit-tap-highlight-color: transparent;
+}
 
 .index-page {
     padding: 70px 30px;

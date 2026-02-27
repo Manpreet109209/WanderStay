@@ -13,6 +13,10 @@
     --transition: 0.35s ease;
 }
 
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
 /* 🌌 Animated Background */
 
 .home-hero {

@@ -1,6 +1,4 @@
-/* ===============================
-   PAGE WRAPPER
-================================ */
+/* PAGE WRAPPER */
 * {
   -webkit-tap-highlight-color: transparent;
 }
@@ -25,9 +23,7 @@
     letter-spacing: -0.5px;
 }
 
-/* ===============================
-   GRID
-================================ */
+/* GRID */
 
 .index-cards-container {
     display: grid;
@@ -35,9 +31,7 @@
     gap: 30px;
 }
 
-/* ===============================
-   CARD
-================================ */
+/* CARD */
 
 .index-listing-card {
     text-decoration: none;
@@ -61,9 +55,7 @@
         0 25px 60px rgba(255, 107, 129, 0.15);
 }
 
-/* ===============================
-   IMAGE
-================================ */
+/* IMAGE */
 
 .index-card-image {
     position: relative;
@@ -83,9 +75,7 @@
     transform: scale(1.05);
 }
 
-/* ===============================
-   CONTENT
-================================ */
+/* CONTENT */
 
 .index-card-content {
     padding: 20px;
@@ -115,9 +105,7 @@
     font-size: 1rem;
 }
 
-/* ===============================
-   RESPONSIVE
-================================ */
+/* RESPONSIVE */
 
 @media (max-width: 768px) {
     .index-page {

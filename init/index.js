@@ -23,7 +23,7 @@ const emptyDB = async () => {
 main()
   .then(async () => {
     console.log("DB connected");
-    await emptyDB();
+    // await emptyDB();
     await initDB();
     mongoose.connection.close();
   })

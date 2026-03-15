@@ -3,6 +3,7 @@ const app = express();
 const mongoose = require("mongoose");
 const Listing = require("./models/listings");
 const path = require("path");
+const wrapAsync = require("./utils/wrapAsync");
 const methodOverride = require("method-override");
 const ejsMate = require("ejs-mate");
 require("dotenv").config();
@@ -10,105 +11,135 @@ require("dotenv").config();
 const port = process.env.PORT || 8080;
 const MONGO_URL = process.env.ATLASDB_URL;
 
-main().then(() => {
-    console.log("DB connected");
-}).catch(err => {
-    console.log("DB Not connected", err);
-});
+// DB CONNECTION
 
 async function main() {
   await mongoose.connect(MONGO_URL);
 }
 
+main()
+  .then(() => console.log("DB connected"))
+  .catch((err) => console.log("DB connection error:", err));
+
+// APP CONFIG
+
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
-app.use(express.urlencoded({extended: true}));
-app.use(methodOverride("_method"));
+
 app.engine("ejs", ejsMate);
+
+app.use(express.urlencoded({ extended: true }));
+app.use(methodOverride("_method"));
 app.use(express.static(path.join(__dirname, "/public")));
 
-app.get("/", (req , res) => {
-    res.render("listings/home");
-})
+// ROUTES
 
-app.get("/about", (req , res) => {
-    res.render("listings/about");
-})
+// home
+app.get("/", (req, res) => {
+  res.render("listings/home");
+});
 
-app.get("/contact", (req , res) => {
-    res.render("listings/contact");
-})
+// about
+app.get("/about", (req, res) => {
+  res.render("listings/about");
+});
 
-// index route
-app.get("/listings", async (req , res) => {
-    try {
+// contact
+app.get("/contact", (req, res) => {
+  res.render("listings/contact");
+});
+
+// INDEX
+app.get(
+  "/listings",
+  wrapAsync(async (req, res) => {
     const allListings = await Listing.find({});
     res.render("listings/index", { allListings });
-    } catch (err){
-        console.log(err);
-        res.status(500).render("errors/listingsError");
-    }
-})
+  })
+);
 
-// create route
-app.get("/listings/new", async (req , res) => {
-    try {
-    // let {id} = req.params;
-    // const listing = await Listing.findById(id);
-    res.render("listings/new");
-    } catch (err){
-        console.log(err);
-        res.status(500).render("errors/listingsError");
-    }
-})
+// NEW
+app.get("/listings/new", (req, res) => {
+  res.render("listings/new");
+});
 
-// create route
-app.post("/listings", async (req , res) => {
-    try {
-    let newlisting = new Listing(req.body.listing);
-    newlisting.save();
+// CREATE
+app.post(
+  "/listings",
+  wrapAsync(async (req, res) => {
+    const newListing = new Listing(req.body.listing);
+    await newListing.save();
     res.redirect("/listings");
-    } catch (err){
-        console.log(err);
-        res.status(500).render("errors/listingsError");
-    }
-})
+  })
+);
 
-// show route
-app.get("/listings/:id", async (req , res) => {
-    try {
-    let {id} = req.params;
+// SHOW
+app.get(
+  "/listings/:id",
+  wrapAsync(async (req, res) => {
+    const { id } = req.params;
     const listing = await Listing.findById(id);
-    res.render("listings/show", { listing });
-    } catch (err){
-        console.log(err);
-        res.status(500).render("errors/listingsError");
-    }
-})
 
-// edit route
-app.get("/listings/:id/edit", async (req , res) => {
-    let { id } = req.params;
+    if (!listing) {
+      throw new Error("Listing not found");
+    }
+
+    res.render("listings/show", { listing });
+  })
+);
+
+// EDIT
+app.get(
+  "/listings/:id/edit",
+  wrapAsync(async (req, res) => {
+    const { id } = req.params;
     const listing = await Listing.findById(id);
     res.render("listings/edit", { listing });
-})
+  })
+);
 
-// update route
-app.put("/listings/:id", async (req , res) => {
-    let { id } = req.params;
-    await Listing.findByIdAndUpdate(id , { ...req.body.listing });
+// UPDATE
+app.put(
+  "/listings/:id",
+  wrapAsync(async (req, res) => {
+    const { id } = req.params;
+    await Listing.findByIdAndUpdate(id, { ...req.body.listing });
     res.redirect(`/listings/${id}`);
-})
+  })
+);
 
-
-// delete route
-app.delete("/listings/:id", async (req , res) => {
-    let { id } = req.params;
-    let deletedlisting = await Listing.findByIdAndDelete(id);
-    console.log(deletedlisting);
+// DELETE
+app.delete(
+  "/listings/:id",
+  wrapAsync(async (req, res) => {
+    const { id } = req.params;
+    await Listing.findByIdAndDelete(id);
     res.redirect("/listings");
-})
+  })
+);
+
+// 404 HANDLER
+
+app.all("*", (req, res, next) => {
+  const err = new Error("Page Not Found");
+  err.statusCode = 404;
+  next(err);
+});
+
+// ERROR MIDDLEWARE
+
+app.use((err, req, res, next) => {
+  let { statusCode = 500, message = "Something went wrong" } = err;
+
+  console.error(err);
+
+  res.status(statusCode).render("errors/listingsError", {
+    message,
+  });
+});
+
+// SERVER
 
 app.listen(port, () => {
-    console.log(`server is listening at post ${port} `);
-})
+  console.log(`Server running on port ${port}`);
+});

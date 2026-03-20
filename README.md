@@ -1,115 +1,151 @@
-WanderStay 🏡
+# 🏡 WanderStay
 
-WanderStay is a full-stack Airbnb-style listing platform built with Node.js, Express, MongoDB, and EJS. Users can create, view, edit, and delete property listings.
+WanderStay is a full-stack Airbnb-style listing platform built with **Node.js, Express, MongoDB, and EJS**.
+It allows users to create, explore, update, and manage property listings through a clean and structured interface.
 
-This project demonstrates backend development, RESTful routing, database integration, and environment variable management.
+---
 
-🚀 Features
+## ✨ Overview
 
-Create property listings
+This project focuses on building a complete backend-driven application with proper routing, database integration, and server-side rendering.
 
-View all listings
+It demonstrates how a real-world listing platform works under the hood, including CRUD operations, schema design, and environment-based configuration.
 
-View individual listing details
+---
 
-Edit existing listings
+## 🚀 Features
 
-Delete listings
+* ➕ Create new property listings
+* 📄 View all listings
+* 🔍 View individual listing details
+* ✏️ Edit existing listings
+* 🗑️ Delete listings
+* 🌐 MongoDB Atlas integration
+* 🔐 Environment variable management with dotenv
+* 🌱 Database seeding with sample data
 
-MongoDB Atlas database integration
+---
 
-Environment variable configuration using dotenv
+## 🛠️ Tech Stack
 
-Seed script for inserting fake data
+* **Backend:** Node.js, Express.js
+* **Database:** MongoDB Atlas
+* **ODM:** Mongoose
+* **Templating Engine:** EJS
+* **Styling:** CSS (public directory)
+* **Environment Management:** dotenv
 
-🛠 Tech Stack
+---
 
-Backend: Node.js, Express.js
+## 📂 Project Structure
 
-Database: MongoDB Atlas
-
-ODM: Mongoose
-
-Templating Engine: EJS
-
-Styling: CSS (Public folder)
-
-Environment Management: dotenv
-
-📁 Project Structure wanderStay/ │ ├── models/ # Mongoose schemas
-
-├── init/ # Database seed script
-
-├── public/ # Static assets (CSS, images)
-
-├── views/ # EJS templates
-
-├── app.js # Main server file
-
+```bash
+wanderStay/
+│
+├── models/        # Mongoose schemas
+├── init/          # Database seed scripts
+├── public/        # Static assets (CSS, images)
+├── views/         # EJS templates
+├── app.js         # Main server file
 ├── package.json
-
 ├── .gitignore
-
 └── README.md
+```
 
-⚙️ Installation & Setup 1️⃣ Clone the repository git clone https://github.com/Manpreet109209/WanderStay.git cd WanderStay 2️⃣ Install dependencies npm install 3️⃣ Create a .env file
+---
 
-Create a file named:
+## ⚙️ Installation & Setup
 
-.env
+### 1. Clone the repository
 
-Inside it, add:
+```bash
+git clone https://github.com/Manpreet109209/WanderStay.git
+cd WanderStay
+```
 
+### 2. Install dependencies
+
+```bash
+npm install
+```
+
+### 3. Configure environment variables
+
+Create a `.env` file in the root directory:
+
+```env
 ATLASDB_URL=your_mongodb_connection_string
+```
 
-Replace your_mongodb_connection_string with your MongoDB Atlas URI.
+Replace with your MongoDB Atlas URI.
 
-4️⃣ Run the application node app.js
+---
 
-Server will run on:
+### 4. Run the server
 
-http://localhost:8080 🌱 Seeding the Database
+```bash
+node app.js
+```
 
-To insert fake data into the database:
+App will run at:
 
+```
+http://localhost:8080
+```
+
+---
+
+## 🌱 Seeding the Database
+
+To populate the database with sample data:
+
+```bash
 node init/index.js
+```
 
 This will:
 
-Clear existing listings
+* Clear existing listings
+* Insert demo listings
 
-Insert sample data
+---
 
-🔐 Environment Variables
+## 🔐 Environment Variables
 
-This project uses environment variables for secure database connections.
+Sensitive data like database URLs are stored in `.env` and excluded via `.gitignore` to keep credentials secure.
 
-The .env file is excluded using .gitignore and is not pushed to GitHub.
+---
 
-📦 Deployment
+## 📦 Deployment Notes
 
-For deployment:
+* Add `ATLASDB_URL` in your hosting environment variables
+* Configure `PORT` if required by your hosting platform
 
-Add ATLASDB_URL in your hosting provider’s Environment Variables section.
+---
 
-Ensure the correct PORT configuration if required by the hosting platform.
+## 📚 Learning Outcomes
 
-📚 Learning Goals
+This project helped in understanding:
 
-This project was built to practice:
+* RESTful routing and API design
+* MongoDB schema modeling with Mongoose
+* MVC-based project structure
+* Server-side rendering using EJS
+* Environment variable management
+* Backend project deployment fundamentals
 
-RESTful API design
+---
 
-MongoDB schema modeling
+## 👨‍💻 Author
 
-Express routing
+**Manpreet**
+Class 11 Student | Aspiring Software Engineer
 
-MVC structure
+* GitHub: https://github.com/Manpreet109209
+* LinkedIn: https://www.linkedin.com/in/manpreet-se/
 
-Git & GitHub workflow
+---
 
-Deployment preparation
+## 💭 Final Note
 
-👨‍💻 Author
-
-Manpreet Class 11 Student | Aspiring Software Engineer
+WanderStay represents a solid step into backend development, focusing on building structured, scalable applications rather than just front-end interfaces.
